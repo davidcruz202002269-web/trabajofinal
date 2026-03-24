@@ -1,8 +1,8 @@
-const express = require('express');
-const router  = express.Router();
+import { Router } from 'express';
+const router  = Router();
 
-const { getAll, getById, create, update, remove } = require('../controllers/productsController');
-const { verifyToken, requireAdmin }               = require('../middlewares/verifyToken');
+import { getAll, getById, create, update, remove } from '../controllers/productsController.js';
+import { verifyToken, requireAdmin } from '../middlewares/verifyToken.js';
 
 // Rutas públicas (solo lectura)
 router.get('/',    getAll);
@@ -13,4 +13,4 @@ router.post('/',    verifyToken, requireAdmin, create);
 router.put('/:id',  verifyToken, requireAdmin, update);
 router.delete('/:id', verifyToken, requireAdmin, remove);
 
-module.exports = router;
+export default router;

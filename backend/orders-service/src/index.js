@@ -1,14 +1,14 @@
 require('dotenv').config();
-const express = require('express');
-const cors    = require('cors');
+import express, { json } from 'express';
+import cors from 'cors';
 
-const ordersRoutes = require('./routes/ordersRoutes');
+import ordersRoutes from './routes/ordersRoutes.js';
 
 const app  = express();
 const PORT = process.env.PORT || 3003;
 
 app.use(cors());
-app.use(express.json());
+app.use(json());
 
 app.get('/health', (_req, res) => {
   res.json({ service: 'orders-service', status: 'OK', timestamp: new Date() });

@@ -2,7 +2,7 @@
 let payments = [];
 let nextPayId = 1;
 
-const VALID_METHODS  = ['efectivo', 'tarjeta', 'transferencia', 'crypto'];
+const VALID_METHODS = ['efectivo', 'tarjeta', 'transferencia', 'crypto'];
 const VALID_STATUSES = ['pending', 'process', 'paid'];
 
 // ── POST /api/payments ────────────────────────────────────────────────────────
@@ -30,12 +30,12 @@ const register = (req, res) => {
   }
 
   const newPayment = {
-    id:        `PAY-${String(nextPayId++).padStart(3, '0')}`,
+    id: `PAY-${String(nextPayId++).padStart(3, '0')}`,
     orderId,
-    amount:    Number(Number(amount).toFixed(2)),
-    method:    method.toLowerCase(),
-    status:    'pending',
-    clientId:  req.user.id,
+    amount: Number(Number(amount).toFixed(2)),
+    method: method.toLowerCase(),
+    status: 'pending',
+    clientId: req.user.id,
     createdAt: new Date(),
   };
 
@@ -80,10 +80,10 @@ const updateStatus = (req, res) => {
   const payment = payments.find(p => p.id === req.params.id);
   if (!payment) return res.status(404).json({ error: 'Pago no encontrado' });
 
-  payment.status    = status;
+  payment.status = status;
   payment.updatedAt = new Date();
 
   return res.json({ message: 'Estado del pago actualizado', payment });
 };
 
-module.exports = { register, getByOrder, getAll, updateStatus };
+export default { register, getByOrder, getAll, updateStatus };

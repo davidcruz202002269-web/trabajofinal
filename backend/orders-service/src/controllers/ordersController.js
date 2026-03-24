@@ -78,4 +78,4 @@ const updateStatus = (req, res) => {
   return res.json({ message: 'Estado del pedido actualizado', order });
 };
 
-module.exports = { create, getAll, getById, updateStatus };
+export default { create, getAll, getById, updateStatus };
